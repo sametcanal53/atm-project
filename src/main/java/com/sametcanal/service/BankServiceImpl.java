@@ -49,7 +49,7 @@ public class BankServiceImpl  implements BankService{
             throw new AtmBusinessException("ATM-1002","Bank Not Found", HttpStatus.NOT_FOUND);
         }
         Bank updateBank = bankRepository.findById(bankRequest.getId()).orElse(null);
-        updateBank.setBankName(updateBank.getBankName());
+        updateBank.setBankName(bankRequest.getBankName());
         this.bankRepository.save(updateBank);
         return ResponseEntity.ok(updateBank);
     }
