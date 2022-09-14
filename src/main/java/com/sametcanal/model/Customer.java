@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -17,13 +18,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "customers")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","bankId","bank"})
-public class Customer{
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler","bank"})
+public class Customer extends BaseEntity{
 
-    @Id
-    @Column(name = "customerId",nullable = false)
+    /*@Id
+    @Column(name = "id",nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long customerId;
+    private Long id;*/
 
     @Column(name = "customer_name")
     private String customerName;
