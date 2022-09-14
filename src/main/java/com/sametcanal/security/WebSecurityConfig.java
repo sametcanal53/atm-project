@@ -1,3 +1,5 @@
+package com.sametcanal.security;
+
 import com.sametcanal.bean.PasswordEncoderBean;
 import com.sametcanal.security.jwt.JwtAuthenticationEntryPoint;
 import com.sametcanal.security.jwt.JwtRequestFilter;
@@ -44,22 +46,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     //swagger
     //http://localhost:8080/swagger-ui/index.html
     @Override
-    public void configure(WebSecurity web) {
-        web.ignoring().antMatchers("/swagger-ui/**",
-                "/v3/api-docs/**",
-                "/asm-swagger.html",
-                "/api-docs/**",
-                "/api-docs/swagger-config",
-                "/asm-swagger");
-    }
-
-    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
-        httpSecurity.cors().and()
-                .csrf().disable()
+        httpSecurity
+                .cors()
+                .and()
+                .csrf()
+                .disable()
                 .authorizeRequests()
-                .antMatchers("/", "/api/v1/index", "/success", "/login").permitAll()
+                .antMatchers("/", "/api/v1/index", "/success", "/login","/swagger-ui/**","/v3/api-docs/**","/asm-swagger.html", "/api-docs/**", "/api-docs/swagger-config", "/asm-swagger").permitAll()
                 //.antMatchers("/api/v1/employees/**").permitAll()
                 .antMatchers("/authenticate", "/register").permitAll()
                 // .antMatchers(AUTH_WHITELIST).permitAll()
